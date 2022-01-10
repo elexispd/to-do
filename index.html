@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TO-DO</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/all.min.css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<div class="container">
+		<input type="text" name="" id="main-input" placeholder="Enter Task Here...">
+
+		<ul></ul>
+	</div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#main-input').change(function(){
+			var input = $(this).val();
+			$('ul').append('<li> <input type="text" name="" id="input" hidden> <span>' + input + ' </span> <i class="fa fa-check"></i> <i class="fa fa-edit"></i> <i class="fa fa-trash"></i>' + '</li>');
+			$(this).val('');
+		})
+		// $('ul input').hide();
+		$('ul').on('click','.fa-check', function(){
+			$(this).parent().toggleClass('checked');
+		})
+
+
+		$('ul').on('click','.fa-edit', function(){
+			// if ($(this).siblings('#input').is(':hidden')) {
+				$(this).siblings('#input').toggleClass('input');
+			// }
+			$(this).siblings('span').toggle();
+			$(this).siblings('#input').focus();			
+		})
+
+		$('ul').on('keypress', '#input', function(e){
+			if (e.which == 13) {
+				var edit = $(this).val();
+				if (edit != '') {
+					$(this).siblings('span').text(edit);
+					// $(this).removeClass('input');
+					$(this).siblings('span').show();
+					$("#main-input").focus();
+				} else{
+					alert("Task cannot be empty");
+				}
+				$(this).removeClass('input');
+			}
+		})
+		$('ul').on('focusout', '#input', function(e){
+			$(this).removeClass('input');
+			$(this).siblings('span').show();
+			$("#main-input").focus();
+		})
+
+		$('ul').on('click','.fa-trash', function(){
+			$(this).parent().remove();
+		})
+
+	})
+
+</script>
+</body>
+</html>

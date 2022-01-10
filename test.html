@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+ 
+<form id="f1">
+	<input type="text" id="text" name="">
+	<button type="submit">submit</button>
+</form>
+<form id="f2">
+	<input type="text" id="tex" name="">
+	<button type="submit">submit</button>
+</form>
+
+<input type="file" accept="image/*;capture=camera" name="">
+<device type="media" onchange="update(this.data)">g</device>
+<video autoplay></video>
+
+<script type="text/javascript">
+	function update(stream){
+		document.querySelector('video').src = stream.url
+	}
+</script>
+
+<script type="text/javascript">
+	var form = document.querySelector('#f1');
+	var form2 = document.querySelector('#f2');
+	form.addEventListener("submit", function(e){
+		var test = document.getElementById('text').value;
+		alert(test)
+		e.preventDefault();
+	})
+
+	form2.addEventListener("submit", function(e){
+		var abc = document.getElementById('tex').value;
+		alert(abc)
+		e.preventDefault();
+	})	
+
+</script>
+</body>
+</html>
